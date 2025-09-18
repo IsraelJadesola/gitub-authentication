@@ -17,7 +17,7 @@
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
-    import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, GithubAuthProvider } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -32,13 +32,14 @@
       appId: "1:904371335959:web:f11ed99e1704adde407d52"
     };
 
-    
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    
-    const auth = gitSignIn(app);
-    const provider = new GoogleAuthProvider();
-    
+
+    const auth = getAuth(app);
+    // const provider = new GoogleAuthProvider();
+    const provider = new GithubAuthProvider();
+
     function gitSignIn() {
       signInWithPopup(auth, provider)
         .then((result) => {
@@ -54,7 +55,7 @@
       // alert('test')
     }
     window.gitSignIn = gitSignIn
-    
+
   </script>
 
 
