@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Firebase Authentication</h1>
+    <button onclick="signGoogle()">Log in with Google</button>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+        import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCgAXqqRxCI5kSUQiPY4KGYm1gDna-18Nc",
+            authDomain: "opay-clone-app-2025.firebaseapp.com",
+            projectId: "opay-clone-app-2025",
+            storageBucket: "opay-clone-app-2025.firebasestorage.app",
+            messagingSenderId: "180116262142",
+            appId: "1:180116262142:web:186b7702f2537ca19269af"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        function signGoogle() {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+                    console.log(user);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode);
+                    console.log(errorMessage);
+                })
+            // alert('test')
+        }
+
+        window.signGoogle = signGoogle
+    </script>
+</body>
+
+</html>
